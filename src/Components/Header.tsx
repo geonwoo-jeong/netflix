@@ -1,6 +1,12 @@
 import * as React from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, withRouter, RouteComponentProps } from "react-router-dom";
+
+interface IProps extends RouteComponentProps<any> {}
+
+interface ItemProps {
+  current: boolean;
+}
 
 const Header = styled.header`
   color: white;
@@ -24,6 +30,9 @@ const List = styled.ul`
 const Item = styled.li`
   width: 50px;
   text-align: center;
+  border-bottom: 3px solid
+    ${(props: ItemProps) => (props.current ? "#3498db" : "transparent")};
+  transition: border-bottom 0.5s ease-in-out;
 `;
 
 const SLink = styled(Link)`
@@ -33,18 +42,20 @@ const SLink = styled(Link)`
   justify-content: center;
 `;
 
-export default () => (
+const HeaderContainer: React.SFC<IProps> = ({ location: { pathname } }) => (
   <Header>
     <List>
-      <Item>
+      <Item current={pathname === "/"}>
         <SLink to="/">Movies</SLink>
       </Item>
-      <Item>
+      <Item current={pathname === "/tv"}>
         <SLink to="/tv">TV</SLink>
       </Item>
-      <Item>
-        <SLink to="/seSLinkrch">Search</SLink>
+      <Item current={pathname === "/search"}>
+        <SLink to="/search">Search</SLink>
       </Item>
     </List>
   </Header>
 );
+
+export default withRouter(HeaderContainer);
