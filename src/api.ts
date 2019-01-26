@@ -13,7 +13,7 @@ export const movieApi = {
   upcoming: () => api.get("movie/upcoming"),
   topRated: () => api.get("movie/top_rated"),
   popular: () => api.get("movie/popular"),
-  movieDetail: (id: string) =>
+  movieDetail: (id: number) =>
     api.get(`movie/${id}`, {
       params: {
         append_to_response: "videos"
@@ -31,7 +31,7 @@ export const tvApi = {
   topRated: () => api.get("tv/top_rated"),
   popular: () => api.get("tv/popular"),
   airingToday: () => api.get("tv/airing_today"),
-  showDetail: (id: string) =>
+  showDetail: (id: number) =>
     api.get(`tv/${id}`, {
       params: {
         append_to_response: "videos"
