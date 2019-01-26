@@ -1,5 +1,13 @@
 import * as React from "react";
 
-const TVPresenter: React.SFC = () => <div>TV</div>;
+interface IProps {
+  topRated: any;
+  popular: any;
+  airingToday: any;
+  loading: boolean;
+  error: any;
+}
+
+const TVPresenter: React.SFC<IProps> = () => <div>TV</div>;
 
 export default TVPresenter;

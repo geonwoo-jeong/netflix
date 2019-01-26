@@ -1,5 +1,11 @@
 import * as React from "react";
 
-const DetailPresenter: React.SFC = () => <div>hi</div>;
+interface IProps {
+  result: any;
+  error: any;
+  loading: boolean;
+}
+
+const DetailPresenter: React.SFC<IProps> = () => <div>Detail</div>;
 
 export default DetailPresenter;

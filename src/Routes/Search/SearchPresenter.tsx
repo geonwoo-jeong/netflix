@@ -1,5 +1,13 @@
 import * as React from "react";
 
-const SearchPresenter: React.SFC = () => <div>Search</div>;
+interface IProps {
+  movieResults: any;
+  tvResults: any;
+  searchTerm: string;
+  loading: boolean;
+  error: any;
+}
+
+const SearchPresenter: React.SFC<IProps> = () => <div>Search</div>;
 
 export default SearchPresenter;
