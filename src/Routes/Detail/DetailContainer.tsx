@@ -40,11 +40,9 @@ class DetailContainer extends React.Component<IProps, IState> {
     if (isMovie) {
       try {
         if (isMovie) {
-          const request = await movieApi.movieDetail(parsedId);
-          result = request.data;
+          ({ data: result } = await movieApi.movieDetail(parsedId));
         } else {
-          const request = await tvApi.showDetail(parsedId);
-          result = request.data;
+          ({ data: result } = await tvApi.showDetail(parsedId));
         }
       } catch {
         this.setState({ error: "Cant' find anything. " });
