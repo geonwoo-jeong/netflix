@@ -6,6 +6,7 @@ interface IProps {
   searchTerm: string;
   loading: boolean;
   error: any;
+  handleSubmit: any;
 }
 
 const SearchPresenter: React.SFC<IProps> = () => <div>Search</div>;
