@@ -1,4 +1,5 @@
-import * as React from "react";
+import React from "react";
+import PropTypes from "prop-types";
 
 interface IProps {
   result: any;
@@ -6,6 +7,14 @@ interface IProps {
   loading: boolean;
 }
 
-const DetailPresenter: React.SFC<IProps> = () => <div>Detail</div>;
+const DetailPresenter: React.SFC<IProps> = ({ result, error, loading }) => (
+  <div>Detail</div>
+);
+
+DetailPresenter.propTypes = {
+  result: PropTypes.array,
+  error: PropTypes.string,
+  loading: PropTypes.bool.isRequired
+};
 
 export default DetailPresenter;

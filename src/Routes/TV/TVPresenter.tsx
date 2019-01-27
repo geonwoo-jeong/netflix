@@ -1,4 +1,5 @@
-import * as React from "react";
+import React from "react";
+import PropTypes from "prop-types";
 
 interface IProps {
   topRated: any;
@@ -8,6 +9,20 @@ interface IProps {
   error: any;
 }
 
-const TVPresenter: React.SFC<IProps> = () => <div>TV</div>;
+const TVPresenter: React.SFC<IProps> = ({
+  topRated,
+  popular,
+  airingToday,
+  loading,
+  error
+}) => <div>TV</div>;
+
+TVPresenter.propTypes = {
+  topRated: PropTypes.array,
+  popular: PropTypes.array,
+  airingToday: PropTypes.array,
+  loading: PropTypes.bool.isRequired,
+  error: PropTypes.string
+};
 
 export default TVPresenter;
