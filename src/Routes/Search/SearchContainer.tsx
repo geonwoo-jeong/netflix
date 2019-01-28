@@ -5,17 +5,27 @@ import { movieApi, tvApi } from "api";
 class SearchContainer extends React.Component {
   state = {
     movieResults: null,
-    tvResults: null,
+    showResults: null,
     searchTerm: "",
     loading: false,
     error: null
   };
 
-  handleSubmit = () => {
+  handleSubmit = (event: React.ChangeEvent<HTMLFormElement>) => {
+    event.preventDefault();
     const { searchTerm } = this.state;
     if (searchTerm !== "") {
       this.searchByTerm();
     }
+  };
+
+  updateTerm = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const {
+      target: { value }
+    } = event;
+    this.setState({
+      searchTerm: value
+    });
   };
 
   searchByTerm = async () => {
@@ -36,15 +46,22 @@ class SearchContainer extends React.Component {
   };
 
   render() {
-    const { movieResults, tvResults, searchTerm, loading, error } = this.state;
+    const {
+      movieResults,
+      showResults,
+      searchTerm,
+      loading,
+      error
+    } = this.state;
     return (
       <SearchPresenter
         movieResults={movieResults}
-        tvResults={tvResults}
+        showResults={showResults}
         searchTerm={searchTerm}
         loading={loading}
         error={error}
         handleSubmit={this.handleSubmit}
+        updateTerm={this.updateTerm}
       />
     );
   }
