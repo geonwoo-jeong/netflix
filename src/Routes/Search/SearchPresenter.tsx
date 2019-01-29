@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import Loader from "Components/Loader";
 import Section from "Components/Section";
+import Message from "Components/Message";
 
 interface IProps {
   movieResults: any;
@@ -64,6 +65,13 @@ const SearchPresenter: React.SFC<IProps> = ({
             ))}
           </Section>
         )}
+        {error && <Message color="#e74c3c" text={error} />}
+        {showResults &&
+          movieResults &&
+          showResults.length === 0 &&
+          movieResults.length === 0 && (
+            <Message text="Nothing found." color="#95a5a6" />
+          )}
       </>
     )}
   </Container>

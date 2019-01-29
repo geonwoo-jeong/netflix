@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import Section from "Components/Section";
 import Loader from "Components/Loader";
+import Message from "Components/Message";
 
 interface IProps {
   nowPlaying: any;
@@ -48,6 +49,7 @@ const HomePresenter: React.SFC<IProps> = ({
           ))}
         </Section>
       )}
+      {error && <Message color="#e74c3c" text={error} />}
     </Container>
   );
 
