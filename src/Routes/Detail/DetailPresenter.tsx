@@ -134,11 +134,12 @@ const DetailPresenter: React.SFC<IProps> = ({ result, error, loading }) =>
             </Item>
             <Divider />
             <Item>
-              {result.runtime ? result.runtime : result.episode_run_time[0]} min
-            </Item>
-            <Divider />
-            <Item>
-              {result.runtime ? result.runtime : result.episode_run_time[0]} min
+              {result.runtime
+                ? result.runtime
+                : result.episode_runtime
+                ? result.episode_run_time[0]
+                : "0"}{" "}
+              min
             </Item>
             <Divider />
             <Item>
