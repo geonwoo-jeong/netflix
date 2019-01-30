@@ -1,6 +1,6 @@
-import * as React from "react";
+import React from "react";
 import DetailPresenter from "./DetailPresenter";
-import { RouteComponentProps } from "react-router";
+import { RouteComponentProps } from "react-router-dom";
 import { movieApi, tvApi } from "api";
 
 interface IProps extends RouteComponentProps<any> {}
@@ -33,22 +33,21 @@ class DetailContainer extends React.Component<IProps, IState> {
     } = this.props;
     const { isMovie } = this.state;
     const parsedId = parseInt(id);
+
     if (isNaN(parsedId)) {
       return push("/");
     }
     let result = null;
-    if (isMovie) {
-      try {
-        if (isMovie) {
-          ({ data: result } = await movieApi.movieDetail(parsedId));
-        } else {
-          ({ data: result } = await tvApi.showDetail(parsedId));
-        }
-      } catch {
-        this.setState({ error: "Cant' find anything. " });
-      } finally {
-        this.setState({ loading: false, result });
+    try {
+      if (isMovie) {
+        ({ data: result } = await movieApi.movieDetail(parsedId));
+      } else {
+        ({ data: result } = await tvApi.showDetail(parsedId));
       }
+    } catch {
+      this.setState({ error: "Can't find anything." });
+    } finally {
+      this.setState({ loading: false, result });
     }
   }
 
