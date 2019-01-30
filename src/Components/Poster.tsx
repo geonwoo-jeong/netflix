@@ -78,6 +78,12 @@ const Poster: React.SFC<IProps> = ({
               : require("assets/noPosterSmall.png")
           }
         />
+        <Rating>
+          <span role="img" aria-label="rating">
+            ⭐️
+          </span>{" "}
+          {rating}/10
+        </Rating>
       </ImageContainer>
       <Title>
         {title.length > 18 ? `${title.substring(0, 18)}...` : title}
