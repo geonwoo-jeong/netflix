@@ -2,6 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import Loader from "Components/Loader";
+import Helmet from "react-helmet";
+import Message from "Components/Message";
 
 interface IProps {
   result: any;
@@ -83,12 +85,28 @@ const Overview = styled.p`
 
 const DetailPresenter: React.SFC<IProps> = ({ result, error, loading }) =>
   loading ? (
-    <Loader />
+    <>
+      <Helmet>
+        <title>Loading... | Netflix</title>
+      </Helmet>
+      <Loader />
+    </>
+  ) : error ? (
+    <Message color="#e74c3c" text={error} />
   ) : (
     <Container>
+      <Helmet>
+        <title>
+          {result.title ||
+            result.name ||
+            result.original_title ||
+            result.original_name}{" "}
+          | Netflix
+        </title>
+      </Helmet>
       <Backdrop
         bgImage={
-          result && result.backdrop_path
+          result.backdrop_path
             ? `http://image.tmdb.org/t/p/original${result.backdrop_path}`
             : ""
         }
