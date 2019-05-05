@@ -19,6 +19,7 @@ Learning React and ES6 by building a Movie Discovery App.
 - [x] TV Show Detail
 - [x] Movie Detail
 - [x] Search (Movie, TV)
-# Preview:
+
+## Preview:
 
 Try it on [github-pages](https://geonwoo-jeong.github.io/netflix)
