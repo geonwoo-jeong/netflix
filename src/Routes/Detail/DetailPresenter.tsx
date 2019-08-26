@@ -53,6 +53,15 @@ const Cover = styled.div`
   border-radius: 5px;
 `;
 
+const IMDB = styled.img.attrs({
+  src:
+    "https://m.media-amazon.com/images/G/01/IMDb/BG_rectangle._CB1509060989_SY230_SX307_AL_.png"
+})`
+  height: 20px;
+  margin-right: 10px;
+  object-fit: contain;
+`;
+
 const Data = styled.div`
   width: 70%;
   margin-left: 10px;
@@ -65,6 +74,13 @@ const Title = styled.h1`
 
 const ItemContainer = styled.div`
   margin: 20px 0px;
+`;
+
+const CompanyContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin: 20px 0px;
+  height: 50px;
 `;
 
 const Item = styled.span``;
@@ -83,6 +99,19 @@ const Overview = styled.p`
   width: 50%;
 `;
 
+const Youtube = styled.iframe`
+  width: 500px;
+  height: 315px;
+  margin-bottom: 10px;
+`;
+
+const CompanyImage = styled.img`
+  height: 100%;
+  object-fit: contain;
+  margin: 0 10px;
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.7));
+`;
+
 const DetailPresenter: React.SFC<IProps> = ({ result, error, loading }) =>
   loading ? (
     <>
@@ -95,6 +124,7 @@ const DetailPresenter: React.SFC<IProps> = ({ result, error, loading }) =>
     <Message color="#e74c3c" text={error} />
   ) : (
     <Container>
+      {console.log(result)}
       <Helmet>
         <title>
           {result.title ||
@@ -120,6 +150,12 @@ const DetailPresenter: React.SFC<IProps> = ({ result, error, loading }) =>
           }
         />
         <Data>
+          {result.videos && result.videos.results && (
+            <Youtube
+              src={`https://www.youtube.com/embed/${result.videos.results[0].key}`}
+              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+            />
+          )}
           <Title>
             {result.title ||
               result.name ||
@@ -127,6 +163,14 @@ const DetailPresenter: React.SFC<IProps> = ({ result, error, loading }) =>
               result.original_name}
           </Title>
           <ItemContainer>
+            <Item>
+              <a
+                href={`https://www.imdb.com/title/${result.imdb_id}`}
+                target="_blank"
+              >
+                <IMDB />
+              </a>
+            </Item>
             <Item>
               {result.release_date
                 ? result.release_date.substring(0, 4)
@@ -148,10 +192,22 @@ const DetailPresenter: React.SFC<IProps> = ({ result, error, loading }) =>
                   index === result.genres.length - 1
                     ? genre.name
                     : `${genre.name} / `
-                )}
+                )}{" "}
             </Item>
+            <Divider />
+            <Item>{result.production_countries[0].iso_3166_1}</Item>
             <Overview>{result.overview}</Overview>
           </ItemContainer>
+          <CompanyContainer>
+            {result.production_companies &&
+              result.production_companies.map((company: any, index: number) => (
+                <CompanyImage
+                  key={index}
+                  src={`https://image.tmdb.org/t/p/w300${company.logo_path}`}
+                  alt={company.name}
+                />
+              ))}
+          </CompanyContainer>
         </Data>
       </Content>
     </Container>

@@ -1,10 +1,13 @@
-// tslint:disable-next-line
+/* tslint:disable */
+
 require("dotenv").config();
 
-// import * as serviceWorker from "serviceWorker";
+/* eslint-disable import/first */
+import App from "./Components/App";
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "Components/App";
+
+// import * as serviceWorker from "serviceWorker";
 
 ReactDOM.render(<App />, document.getElementById("root"));
 
