@@ -3,7 +3,7 @@ import HomePresenter from "./HomePresenter";
 import { movieApi } from "api";
 
 class HomeContainer extends React.Component {
-  state = {
+  public state = {
     nowPlaying: null,
     upcoming: null,
     popular: null,
@@ -11,7 +11,7 @@ class HomeContainer extends React.Component {
     loading: true
   };
 
-  async componentDidMount() {
+  public async componentDidMount() {
     try {
       const {
         data: { results: nowPlaying }
@@ -39,7 +39,7 @@ class HomeContainer extends React.Component {
     }
   }
 
-  render() {
+  public render() {
     const { nowPlaying, upcoming, popular, error, loading } = this.state;
 
     return (

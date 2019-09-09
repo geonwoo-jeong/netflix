@@ -3,7 +3,7 @@ import TVPresenter from "./TVPresenter";
 import { tvApi } from "api";
 
 class TVContainer extends React.Component {
-  state = {
+  public state = {
     topRated: null,
     popular: null,
     airingToday: null,
@@ -11,7 +11,7 @@ class TVContainer extends React.Component {
     error: null
   };
 
-  async componentDidMount() {
+  public async componentDidMount() {
     try {
       const {
         data: { results: topRated }
@@ -35,7 +35,7 @@ class TVContainer extends React.Component {
     }
   }
 
-  render() {
+  public render() {
     const { topRated, popular, airingToday, loading, error } = this.state;
     return (
       <TVPresenter

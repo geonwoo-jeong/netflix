@@ -1,16 +1,18 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { useDispatch } from "react-redux";
+import { CHANGE_BACKDROP } from "store";
 
-interface IProps {
-  id: number;
-  imageUrl: any;
-  rating: number;
-  year: any;
-  title: string;
-  isMovie?: boolean;
-}
+// interface IProps {
+//   id: number;
+//   imageUrl: any;
+//   rating: number;
+//   year: any;
+//   title: string;
+//   isMovie?: boolean;
+//   backdrop?: any;
+// }
 
 interface ImageProps {
   bgUrl: string;
@@ -60,46 +62,59 @@ const Year = styled.span`
   color: rgba(255, 255, 255, 0.5);
 `;
 
-const Poster: React.SFC<IProps> = ({
+const Poster: React.SFC<any> = ({
   id,
   imageUrl,
+  backdrop,
   title,
   rating,
   year,
   isMovie = false
-}) => (
-  <Link to={isMovie ? `/movie/${id}` : `/show/${id}`}>
-    <Container>
-      <ImageContainer>
-        <Image
-          bgUrl={
-            imageUrl
-              ? `https://image.tmdb.org/t/p/w300${imageUrl}`
-              : require("assets/noPosterSmall.png")
-          }
-        />
-        <Rating>
-          <span role="img" aria-label="rating">
-            ⭐️
-          </span>{" "}
-          {rating}/10
-        </Rating>
-      </ImageContainer>
-      <Title>
-        {title.length > 18 ? `${title.substring(0, 18)}...` : title}
-      </Title>
-      <Year>{year}</Year>
-    </Container>
-  </Link>
-);
+}: any) => {
+  const dispatch = useDispatch();
 
-Poster.propTypes = {
-  id: PropTypes.number.isRequired,
-  imageUrl: PropTypes.string,
-  title: PropTypes.string.isRequired,
-  rating: PropTypes.number.isRequired,
-  year: PropTypes.string,
-  isMovie: PropTypes.bool
+  const handleMouseHover = () => {
+    dispatch({
+      type: CHANGE_BACKDROP,
+      payload: backdrop
+    });
+  };
+
+  return (
+    <Link to={isMovie ? `/movie/${id}` : `/show/${id}`}>
+      <Container onMouseEnter={handleMouseHover}>
+        <ImageContainer>
+          <Image
+            bgUrl={
+              imageUrl
+                ? `https://image.tmdb.org/t/p/w300${imageUrl}`
+                : require("assets/noPosterSmall.png")
+            }
+          />
+          <Rating>
+            <span role="img" aria-label="rating">
+              ⭐️
+            </span>{" "}
+            {rating}/10
+          </Rating>
+        </ImageContainer>
+        <Title>
+          {title.length > 18 ? `${title.substring(0, 18)}...` : title}
+        </Title>
+        <Year>{year}</Year>
+      </Container>
+    </Link>
+  );
 };
+
+// Poster.propTypes = {
+//   id: PropTypes.number.isRequired,
+//   imageUrl: PropTypes.string,
+//   title: PropTypes.string.isRequired,
+//   rating: PropTypes.number.isRequired,
+//   year: PropTypes.string,
+//   isMovie: PropTypes.bool,
+//   backdrop: PropTypes.any
+// };
 
 export default Poster;
