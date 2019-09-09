@@ -24,7 +24,7 @@ interface IBgImageProps {
 }
 
 const Container = styled.div`
-  padding: 20px;
+  padding: 4vw;
 `;
 
 const Form = styled.form`

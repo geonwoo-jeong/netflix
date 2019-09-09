@@ -37,7 +37,7 @@ const Backdrop = styled.div`
 `;
 
 const Container = styled.div`
-  padding: 50px;
+  padding: 4vw;
 `;
 
 const TVPresenter: React.SFC<IProps> = ({

@@ -23,7 +23,7 @@ const Container = styled.div`
   width: 100%;
   min-height: 90vh;
   position: relative;
-  padding: 50px;
+  padding: 4vw;
   background-color: black;
 `;
 
@@ -109,7 +109,6 @@ const ItemContent = styled.div`
 
 const Overview = styled.p`
   font-size: 12px;
-  opacity: 0.7;
   line-height: 1.5;
   width: 100%;
 `;
