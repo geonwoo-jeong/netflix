@@ -184,6 +184,17 @@ const Company = styled.span`
   justify-items: center;
 `;
 
+const Official = styled.span`
+  background-color: #27ae60;
+  text-align: center;
+  color: #dfe6e9;
+  height: 20px;
+  font-size: 16px;
+  padding: 0 5px;
+  font-weight: 600;
+  border-radius: 2px;
+`;
+
 const DetailPresenter: React.SFC<IProps> = ({ result, error, loading }) =>
   loading ? (
     <>
@@ -324,7 +335,7 @@ const DetailPresenter: React.SFC<IProps> = ({ result, error, loading }) =>
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    OFFICIAL
+                    <Official>OFFICIAL</Official>
                   </a>
                 )}
               </ItemContent>
