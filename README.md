@@ -31,4 +31,4 @@ Learning React and ES6 by building a Movie Discovery App.
 
 ## Preview:
 
-Try it on [github-pages](https://geonwoo-jeong.github.io/netflix)
+Try it on [netlify](https://naughty-yalow-fae68f.netlify.com)
